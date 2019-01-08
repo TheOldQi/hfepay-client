@@ -1,8 +1,8 @@
 package com.qixiafei.hfepay.client.params;
 
 import lombok.Data;
-
-import java.io.Serializable;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * <P>Description: . </P>
@@ -15,25 +15,11 @@ import java.io.Serializable;
  * @version 1.0
  * @since java 1.8.0
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class HfepayIdPersonAuthResp implements Serializable {
+@ToString(callSuper = true)
+public class HfepayIdPersonAuthResult extends HfepayBaseResult {
 
-    /**
-     * 响应码，00代表验证通过，其他字段才有意义，其他都是不通过.
-     *
-     * @see com.qixiafei.hfepay.client.params.enums.HfepayIdPersonAuthRespCodeEnum
-     */
-    private String code;
-
-    /**
-     * 响应码对应描述.
-     */
-    private String codeDesc;
-
-    /**
-     * 请求头信息，原样返回.
-     */
-    private HfepayHeader header;
 
     /**
      * 相似度，0-100 之间（45 分及以上为同一人，

@@ -16,7 +16,7 @@ import java.util.List;
  * @since java 1.8.0
  */
 @Data
-class IdPersonAuthConditionDataBo {
+class ContentsDataBo<R extends Record> {
 
     /**
      * 接口名称.
@@ -29,27 +29,15 @@ class IdPersonAuthConditionDataBo {
     private String recordNum;
 
     /**
-     * 生活照base64字符串.
+     * 实际数据承载体.
      */
-    private List<Record> record;
+    private List<R> record;
 
-    @Data
-    static class Record {
-        /**
-         * 分数.
-         */
-        private String score;
-        /**
-         * 接口调用成功（不代表业务成功）返回码.
-         *
-         * @see com.qixiafei.hfepay.client.params.enums.HfepayIdPersonAuthRespCodeEnum
-         */
-        private String resCode;
-
-        /**
-         * 返回码描述.
-         */
-        private String resDesc;
+    public List<R> getRecord() {
+        return record;
     }
 
+    public void setRecord(List<R> record) {
+        this.record = record;
+    }
 }

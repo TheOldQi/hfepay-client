@@ -1,11 +1,7 @@
 package com.qixiafei.hfepay.client.core;
 
 import com.qixiafei.hfepay.client.params.HfepayHeader;
-import com.qixiafei.hfepay.client.params.HfepayIdPersonAuthReq;
 import org.apache.commons.lang3.time.FastDateFormat;
-
-import java.io.IOException;
-import java.util.Base64;
 
 /**
  * <P>Description: 转换类代码收集类. </P>
@@ -44,20 +40,4 @@ class Converter {
         return bo;
     }
 
-    /**
-     * 构建人证合一请求条件bo.
-     *
-     * @param req 公共请求参数入参
-     * @return
-     * @throws IOException
-     */
-    public static IdPersonAuthConditionBo buildIdPersonAuthConditionBo(HfepayIdPersonAuthReq req) throws IOException {
-        final IdPersonAuthConditionBo conditionBo = new IdPersonAuthConditionBo();
-        conditionBo.setIdCard(req.getIdCard());
-        conditionBo.setRealName(req.getRealName());
-
-        byte[] bytes = ImgUtils.limitSize(req.getImg(), 30, 0.8f);
-        conditionBo.setPhoto(Base64.getEncoder().encodeToString(bytes));
-        return conditionBo;
-    }
 }

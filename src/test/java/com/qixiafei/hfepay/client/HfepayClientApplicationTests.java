@@ -2,8 +2,8 @@ package com.qixiafei.hfepay.client;
 
 import com.qixiafei.hfepay.client.core.HfepayClient;
 import com.qixiafei.hfepay.client.params.HfepayHeader;
-import com.qixiafei.hfepay.client.params.HfepayIdPersonAuthReq;
-import com.qixiafei.hfepay.client.params.HfepayIdPersonAuthResp;
+import com.qixiafei.hfepay.client.params.HfepayIdPersonAuthParam;
+import com.qixiafei.hfepay.client.params.HfepayIdPersonAuthResult;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class HfepayClientApplicationTests {
 
     @Test
     public void contextLoads() throws Exception {
-        final HfepayIdPersonAuthReq req = new HfepayIdPersonAuthReq();
+        final HfepayIdPersonAuthParam req = new HfepayIdPersonAuthParam();
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");
@@ -36,7 +36,7 @@ public class HfepayClientApplicationTests {
         req.setRealName("齐霞飞");
         req.setIdCard("152301198712096033");
         req.setImg(IOUtils.toByteArray(new FileInputStream("D:\\工作变动\\证明材料\\齐霞飞身份证反面.jpg")));
-        HfepayIdPersonAuthResp hfepayIdPersonAuthResp = hfepayClient.idPersonAuth(req);
+        HfepayIdPersonAuthResult hfepayIdPersonAuthResp = hfepayClient.idPersonAuth(req);
         System.out.println(hfepayIdPersonAuthResp.toString());
     }
 
