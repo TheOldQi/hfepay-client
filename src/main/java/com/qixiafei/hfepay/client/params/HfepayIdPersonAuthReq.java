@@ -1,8 +1,10 @@
 package com.qixiafei.hfepay.client.params;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -18,12 +20,22 @@ import javax.validation.constraints.NotNull;
  * @since java 1.8.0
  */
 @Data
+@ToString(exclude = "img")
 public class HfepayIdPersonAuthReq {
 
     /**
-     *
+     * 请求头信息.
      */
+    @Valid
+    @NotNull
     private HfepayHeader header;
+
+    /**
+     * 加密算法偏移量，8位随机数或字母.
+     */
+    @NotNull
+    @Length(min = 8, max = 8)
+    private String vector;
 
     /**
      * 姓名.

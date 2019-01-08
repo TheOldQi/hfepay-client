@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.qixiafei.hfepay.client.core.HfepayAutoConfigure
+

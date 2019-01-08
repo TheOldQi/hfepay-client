@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 /**
  * <P>Description: 华付请求响应中的header结构. </P>
@@ -27,29 +28,13 @@ public class HfepayHeader {
     private String qryBatchNo;
 
     /**
-     * 商户编号（华付分配）.
-     */
-    @NotBlank
-    private String userCode;
-
-    /**
-     * 应用编号（华付分配）.
-     */
-    @NotBlank
-    private String sysCode;
-
-    /**
      * 查询原因.
      */
     private String qryReason;
 
     /**
-     * 查询日期，yyyyMMdd.
+     * 查询时间.
      */
-    private String qryDate;
+    private Date qryTime;
 
-    /**
-     * 查询时间,HHmmss.
-     */
-    private String qryTime;
 }

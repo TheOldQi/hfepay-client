@@ -61,30 +61,7 @@ class PostUtil {
 
     }
 
-    /**
-     * 发送post请求，json格式，业务无关.
-     *
-     * @param url     请求url地址
-     * @param reqJson 请求json
-     * @return 请求响应json串
-     */
-    public static String postJson(final String url, final String reqJson) {
 
-        final StringEntity entity = new StringEntity(reqJson, "utf-8");
-        entity.setContentEncoding("utf-8");
-        entity.setContentType(CONTENT_TYPE_JSON);
-
-        return postAndGetResult(url, entity, CONTENT_TYPE_JSON);
-    }
-
-    /**
-     * 发送post请求，普通form表单提交，业务无关.
-     * application/x- www-form-urlencoded
-     *
-     * @param url    请求url地址
-     * @param reqMap 请求数据
-     * @return 请求响应json串
-     */
     public static String postForm(final String url, final Map<String, Object> reqMap) {
 
         final List<BasicNameValuePair> pairList = new ArrayList<>(reqMap.size());
@@ -101,66 +78,6 @@ class PostUtil {
         }
     }
 
-
-    /**
-     * 使用multipart/form-data格式发送Post请求，业务无关.
-     *
-     * @param url
-     * @param plainMap    除了文件之外的参数
-     * @param fileMap     文件参数,key就是发往服务方数据中的key，value是输入流
-     * @param fileNameMap 文件名参数，对应fileMap中的输入流，使用fileMap的key可以取得文件名
-     * @return
-     */
-    public static String postFormData(final String url, final Map<String, Object> plainMap,
-                                      final Map<String, InputStream> fileMap,
-                                      final Map<String, String> fileNameMap) {
-
-        //构建multipartEntity对象
-        final MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-        entityBuilder.setCharset(Charset.forName("utf-8"));
-        // 封装一般参数
-        for (Map.Entry<String, Object> entry : plainMap.entrySet()) {
-            if (entry.getValue() == null) {
-                continue;
-            }
-            entityBuilder.addTextBody(entry.getKey(), entry.getValue().toString(), ContentType.TEXT_PLAIN);
-        }
-        // 封装文件参数
-        for (Map.Entry<String, InputStream> entry : fileMap.entrySet()) {
-            entityBuilder.addBinaryBody(entry.getKey(), entry.getValue(), ContentType.DEFAULT_BINARY, fileNameMap.get(entry.getKey()));
-        }
-        return postAndGetResult(url, entityBuilder.build(), null);
-    }
-
-    /**
-     * 使用multipart/form-data格式发送Post请求，业务无关.
-     *
-     * @param url
-     * @param plainMap    除了文件之外的参数
-     * @param fileMap     文件参数,key就是发往服务方数据中的key，value是字节数组
-     * @param fileNameMap 文件名参数，对应fileMap中的输入流，使用fileMap的key可以取得文件名
-     * @return
-     */
-    public static String postFormDataBytes(final String url, final Map<String, Object> plainMap,
-                                           final Map<String, byte[]> fileMap,
-                                           final Map<String, String> fileNameMap) {
-
-        //构建multipartEntity对象
-        final MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-        entityBuilder.setCharset(Charset.forName("utf-8"));
-        // 封装一般参数
-        for (Map.Entry<String, Object> entry : plainMap.entrySet()) {
-            if (entry.getValue() == null) {
-                continue;
-            }
-            entityBuilder.addTextBody(entry.getKey(), entry.getValue().toString(), ContentType.TEXT_PLAIN);
-        }
-        // 封装文件参数
-        for (Map.Entry<String, byte[]> entry : fileMap.entrySet()) {
-            entityBuilder.addBinaryBody(entry.getKey(), entry.getValue(), ContentType.DEFAULT_BINARY, fileNameMap.get(entry.getKey()));
-        }
-        return postAndGetResult(url, entityBuilder.build(), null);
-    }
 
     /**
      * 执行发送post请求并拿到结果的方法.
