@@ -1,5 +1,6 @@
 package com.qixiafei.hfepay.client.core;
 
+import com.qixiafei.hfepay.client.HfepayProperties;
 import com.qixiafei.hfepay.client.params.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -57,6 +58,53 @@ public final class HfepayClient {
         return HfepayCore.bankCardOcr(buildConditionBo(param), properties, param.getVector(), param.getHeader());
     }
 
+    /**
+     * 姓名、身份证号匹配验证.
+     *
+     * @param param 外部请求参数
+     * @return 根据code判断是否验证通过
+     */
+    public HfepayBaseResult idNameAuth(final HfepayIdNameAuthParam param) throws Exception {
+        log.info("华付身份证号、姓名匹配验证，param={}", param);
+        ValidateUtils.validate(param);
+        return HfepayCore.idNameAuth(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+    }
+
+    /**
+     * 银行卡2要素验证.
+     *
+     * @param param 外部请求参数
+     * @return 根据code判断是否验证通过
+     */
+    public HfepayBaseResult bankCardElement2(final HfepayBankCardElement2Param param) throws Exception {
+        log.info("华付银行卡2要素验证,param={}", param);
+        ValidateUtils.validate(param);
+        return HfepayCore.bankCardElement2(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+    }
+
+    /**
+     * 银行卡3要素验证.
+     *
+     * @param param 外部请求参数
+     * @return 根据code判断是否验证通过
+     */
+    public HfepayBaseResult bankCardElement3(final HfepayBankCardElement2Param param) throws Exception {
+        log.info("华付银行卡3要素验证,param={}", param);
+        ValidateUtils.validate(param);
+        return HfepayCore.bankCardElement3(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+    }
+
+    /**
+     * 银行卡4要素验证.
+     *
+     * @param param 外部请求参数
+     * @return 根据code判断是否验证通过
+     */
+    public HfepayBaseResult bankCardElement4(final HfepayBankCardElement2Param param) throws Exception {
+        log.info("华付银行卡4要素验证,param={}", param);
+        ValidateUtils.validate(param);
+        return HfepayCore.bankCardElement4(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+    }
 
     /**
      * 构建请求华付condition bo.

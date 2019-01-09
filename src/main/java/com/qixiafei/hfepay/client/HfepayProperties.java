@@ -1,4 +1,4 @@
-package com.qixiafei.hfepay.client.core;
+package com.qixiafei.hfepay.client;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -40,12 +40,12 @@ public class HfepayProperties {
     /**
      * 身份证号和姓名匹配接口.
      */
-    private String idNoNameMateUrl = "https://api.hfdatas.com/superapi/super/auth/idcard";
+    private String idNameUrl = "https://api.hfdatas.com/superapi/super/auth/idcard";
 
     /**
      * 身份证号和姓名匹配接口密钥.
      */
-    private String idNoNameMateAppKey;
+    private String idNameAppKey;
 
     /**
      * 银行卡orc接口.

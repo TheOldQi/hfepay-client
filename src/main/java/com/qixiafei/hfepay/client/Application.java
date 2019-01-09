@@ -1,18 +1,13 @@
 package com.qixiafei.hfepay.client;
 
-import com.qixiafei.hfepay.client.core.HfepayProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 
 /**
  * <P>Description: springboot启动类. </P>

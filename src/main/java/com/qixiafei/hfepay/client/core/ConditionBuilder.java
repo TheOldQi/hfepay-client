@@ -12,11 +12,12 @@ import java.io.IOException;
  * <P>UPDATE AT: 2019/1/8 20:28</P>
  *
  * @param <T> 外部请求参数类型
+ * @param <R> 返回的condition实例类型
  * @author 齐霞飞
  * @version 1.0
  * @since java 1.8.0
  */
-interface ConditionBuilder<T extends HfepayBaseParam,R extends ConditionsConditionType> {
+interface ConditionBuilder<T extends HfepayBaseParam, R extends ConditionsConditionType> {
 
     /**
      * 构建condition.

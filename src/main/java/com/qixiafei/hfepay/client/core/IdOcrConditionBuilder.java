@@ -16,7 +16,7 @@ import java.util.Base64;
  * @version 1.0
  * @since java 1.8.0
  */
-public class IdOcrConditionBuilder implements ConditionBuilder<HfepayIdOcrParam, IdOcrConditionBo> {
+class IdOcrConditionBuilder implements ConditionBuilder<HfepayIdOcrParam, IdOcrConditionBo> {
 
     @Override
     public IdOcrConditionBo build(HfepayIdOcrParam req) throws IOException {

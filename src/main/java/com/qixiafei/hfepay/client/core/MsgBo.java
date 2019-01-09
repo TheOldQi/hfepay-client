@@ -14,7 +14,7 @@ import lombok.Data;
  * @since java 1.8.0
  */
 @Data
-public class MsgBo {
+class MsgBo {
 
     /**
      * 响应码，00代表验证通过，其他字段才有意义，其他都是不通过.

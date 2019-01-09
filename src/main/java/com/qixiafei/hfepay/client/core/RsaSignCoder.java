@@ -20,7 +20,7 @@ import java.util.Map;
  * @version 1.0
  * @since java 1.8.0
  */
-public class RsaSignCoder {
+class RsaSignCoder {
 
     public static final String KEY_ALGORITHM = "RSA";
     public static final String SIGNATURE_ALGORITHM = "MD5withRSA";

@@ -31,7 +31,7 @@ class ValidateUtils {
      * @param <T>    分组类泛型
      * @throws IllegalArgumentException 参数校验失败,内容是失败原因
      */
-    public static <T> void validate(final T object, final Class<?>... groups) throws IllegalArgumentException {
+    static <T> void validate(final T object, final Class<?>... groups) throws IllegalArgumentException {
         final Set<ConstraintViolation<T>> errors = validator.validate(object, groups);
         if (errors.isEmpty()) {
             return;

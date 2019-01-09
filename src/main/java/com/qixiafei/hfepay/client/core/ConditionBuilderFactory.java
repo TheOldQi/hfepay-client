@@ -1,8 +1,6 @@
 package com.qixiafei.hfepay.client.core;
 
-import com.qixiafei.hfepay.client.params.HfepayBaseParam;
-import com.qixiafei.hfepay.client.params.HfepayIdOcrParam;
-import com.qixiafei.hfepay.client.params.HfepayIdPersonAuthParam;
+import com.qixiafei.hfepay.client.params.*;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -45,5 +43,13 @@ class ConditionBuilderFactory {
         POOL.put(HfepayIdPersonAuthParam.class, new IdPersonConditionBuilder());
         // 身份证ocr
         POOL.put(HfepayIdOcrParam.class, new IdOcrConditionBuilder());
+        // 银行卡ocr
+        POOL.put(HfepayBankCardOcrParam.class, new BankCardOcrConditionBuilder());
+        // 姓名、身份证号验证
+        POOL.put(HfepayIdNameAuthParam.class, new IdNameConditionBuilder());
+        // 银行卡2要素验证
+        // 银行卡3要素验证
+        // 银行卡4要素验证
+
     }
 }

@@ -2,6 +2,7 @@ package com.qixiafei.hfepay.client.core;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.qixiafei.hfepay.client.HfepayProperties;
 import com.qixiafei.hfepay.client.params.*;
 import com.qixiafei.hfepay.client.params.enums.HfepayIdPersonAuthRespCodeEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -116,7 +117,7 @@ class HfepayCore {
 
         result.setHeader(header);
         final BankCardOcrRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getIdOcrAppKey(), hfepayProperties.getIdOcrUrl());
+                hfepayProperties.getBankCardOcrAppKey(), hfepayProperties.getBankCardOrcUrl());
         if (record == null) {
             return result;
         }
@@ -127,6 +128,100 @@ class HfepayCore {
         } else {
             log.error("银行卡ocr失败");
         }
+        return result;
+    }
+
+
+    /**
+     * 姓名身份证号匹配验证.
+     *
+     * @param conditionBo      请求条件bo
+     * @param hfepayProperties 配置属性
+     * @param vector           加密解密偏移量
+     * @param header           请求的header信息
+     * @return 外部响应结果实例
+     * @throws Exception 各种异常
+     */
+    static HfepayBaseResult idNameAuth(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
+                                       final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+        if (StringUtils.isBlank(hfepayProperties.getIdNameAppKey())) {
+            log.error("使用姓名、身份证号匹配验证，必须配置hfepay.idNameAppKey");
+        }
+        final HfepayBaseResult result = new HfepayBaseResult();
+        result.setHeader(header);
+
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
+                hfepayProperties.getIdNameAppKey(), hfepayProperties.getIdNameUrl());
+        return result;
+    }
+
+
+    /**
+     * 银行卡2要素验证.
+     *
+     * @param conditionBo      请求条件bo
+     * @param hfepayProperties 配置属性
+     * @param vector           加密解密偏移量
+     * @param header           请求的header信息
+     * @return 外部响应结果实例
+     * @throws Exception 各种异常
+     */
+    static HfepayBaseResult bankCardElement2(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
+                                             final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+        if (StringUtils.isBlank(hfepayProperties.getBankCardElementTwoAppKey())) {
+            log.error("银行卡二要素验证，必须配置hfepay.bankCardElementTwoAppKey");
+        }
+        final HfepayBaseResult result = new HfepayBaseResult();
+        result.setHeader(header);
+
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
+                hfepayProperties.getBankCardElementTwoAppKey(), hfepayProperties.getBankCardElementTwo());
+        return result;
+    }
+
+    /**
+     * 银行卡3要素验证.
+     *
+     * @param conditionBo      请求条件bo
+     * @param hfepayProperties 配置属性
+     * @param vector           加密解密偏移量
+     * @param header           请求的header信息
+     * @return 外部响应结果实例
+     * @throws Exception 各种异常
+     */
+    static HfepayBaseResult bankCardElement3(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
+                                             final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+        if (StringUtils.isBlank(hfepayProperties.getBankCardElementThreeAppKey())) {
+            log.error("银行卡三要素验证，必须配置hfepay.bankCardElementThreeAppKey");
+        }
+        final HfepayBaseResult result = new HfepayBaseResult();
+        result.setHeader(header);
+
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
+                hfepayProperties.getBankCardElementThreeAppKey(), hfepayProperties.getBankCardElementThree());
+        return result;
+    }
+
+    /**
+     * 银行卡4要素验证.
+     *
+     * @param conditionBo      请求条件bo
+     * @param hfepayProperties 配置属性
+     * @param vector           加密解密偏移量
+     * @param header           请求的header信息
+     * @return 外部响应结果实例
+     * @throws Exception 各种异常
+     */
+    static HfepayBaseResult bankCardElement4(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
+                                             final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+        if (StringUtils.isBlank(hfepayProperties.getBankCardElementFourAppKey())) {
+            log.error("银行卡二要素验证，必须配置hfepay.bankCardElementFourAppKey");
+        }
+        final HfepayBaseResult result = new HfepayBaseResult();
+        result.setHeader(header);
+
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
+                hfepayProperties.getBankCardElementFourAppKey(), hfepayProperties.getBankCardElementFour());
         return result;
     }
 

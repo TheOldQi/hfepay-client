@@ -62,7 +62,7 @@ class PostUtil {
     }
 
 
-    public static String postForm(final String url, final Map<String, Object> reqMap) {
+    static String postForm(final String url, final Map<String, Object> reqMap) {
 
         final List<BasicNameValuePair> pairList = new ArrayList<>(reqMap.size());
         for (Map.Entry<String, Object> entry : reqMap.entrySet()) {

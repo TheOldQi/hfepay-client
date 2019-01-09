@@ -36,5 +36,4 @@ public class HfepayHeader {
      * 查询时间.
      */
     private Date qryTime;
-
 }

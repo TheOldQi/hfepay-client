@@ -1,5 +1,6 @@
-package com.qixiafei.hfepay.client.core;
+package com.qixiafei.hfepay.client;
 
+import com.qixiafei.hfepay.client.core.HfepayClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
