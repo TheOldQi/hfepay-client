@@ -20,7 +20,7 @@ public class HfepayProperties {
     /**
      * 身份证号和人脸匹配接口url
      */
-    private String idPersonUrl = "https://api.hfdatas.com/superapi/super/hdphoto/authv2";
+    private String idPersonUrl = "https://api.hfdatas.com/superapi/super/hdphoto/auth";
 
     /**
      * 身份证号和人脸匹配接口密钥.

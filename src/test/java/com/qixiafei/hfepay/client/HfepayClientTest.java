@@ -30,7 +30,6 @@ public class HfepayClientTest {
         header.setQryTime(new Date());
 
         req.setHeader(header);
-        req.setVector("32414111");
         req.setRealName("齐霞飞");
         req.setIdCard("152301198712096033");
         req.setImg(IOUtils.toByteArray(new FileInputStream("D:\\工作变动\\证明材料\\齐霞飞身份证反面.jpg")));
@@ -43,7 +42,6 @@ public class HfepayClientTest {
     public void idOcr() throws Exception {
         final HfepayIdOcrParam param = new HfepayIdOcrParam();
         param.setPhoto(IOUtils.toByteArray(new FileInputStream("D:\\工作变动\\证明材料\\齐霞飞身份证反面.jpg")));
-        param.setVector("12345678");
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");
@@ -59,7 +57,6 @@ public class HfepayClientTest {
     public void bankCardOcr() throws Exception {
         final HfepayBankCardOcrParam param = new HfepayBankCardOcrParam();
         param.setPhoto(IOUtils.toByteArray(new FileInputStream("D:\\工作变动\\证明材料\\bankcard.jpg")));
-        param.setVector("12345678");
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");
@@ -76,7 +73,6 @@ public class HfepayClientTest {
         final HfepayIdNameAuthParam param = new HfepayIdNameAuthParam();
         param.setRealName("齐霞飞");
         param.setIdCard("152301198712096033");
-        param.setVector("12345678");
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");
@@ -92,7 +88,6 @@ public class HfepayClientTest {
         final HfepayBankCardElement2Param param = new HfepayBankCardElement2Param();
         param.setRealName("齐霞飞");
         param.setBankCard("6214830480656661");
-        param.setVector("12345678");
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");
@@ -109,7 +104,6 @@ public class HfepayClientTest {
         param.setRealName("齐霞飞");
         param.setBankCard("6214830480656661");
         param.setIdCard("152301198712096033");
-        param.setVector("12345678");
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");
@@ -127,7 +121,6 @@ public class HfepayClientTest {
         param.setBankCard("6214830480656661");
         param.setIdCard("152301198712096033");
         param.setMobile("15210254805");
-        param.setVector("12345678");
         final HfepayHeader header = new HfepayHeader();
         header.setQryBatchNo("123456");
         header.setQryReason("测试");

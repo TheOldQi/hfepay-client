@@ -31,7 +31,7 @@ public final class HfepayClient {
     public HfepayIdPersonAuthResult idPersonAuth(final HfepayIdPersonAuthParam param) throws Exception {
         log.info("华付人证合一验证,param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.idPersonAuth(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.idPersonAuth(buildConditionBo(param), properties, param.getHeader());
     }
 
     /**
@@ -43,7 +43,7 @@ public final class HfepayClient {
     public HfepayIdOcrResult idOcr(final HfepayIdOcrParam param) throws Exception {
         log.info("华付身份证ocr，param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.idOcr(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.idOcr(buildConditionBo(param), properties, param.getHeader());
     }
 
     /**
@@ -55,7 +55,7 @@ public final class HfepayClient {
     public HfepayBankCardOcrResult bankCardOcr(final HfepayBankCardOcrParam param) throws Exception {
         log.info("华付银行卡ocr，param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.bankCardOcr(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.bankCardOcr(buildConditionBo(param), properties, param.getHeader());
     }
 
     /**
@@ -67,7 +67,7 @@ public final class HfepayClient {
     public HfepayBaseResult idNameAuth(final HfepayIdNameAuthParam param) throws Exception {
         log.info("华付身份证号、姓名匹配验证，param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.idNameAuth(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.idNameAuth(buildConditionBo(param), properties, param.getHeader());
     }
 
     /**
@@ -79,7 +79,7 @@ public final class HfepayClient {
     public HfepayBaseResult bankCardElement2(final HfepayBankCardElement2Param param) throws Exception {
         log.info("华付银行卡2要素验证,param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.bankCardElement2(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.bankCardElement2(buildConditionBo(param), properties,  param.getHeader());
     }
 
     /**
@@ -91,7 +91,7 @@ public final class HfepayClient {
     public HfepayBaseResult bankCardElement3(final HfepayBankCardElement2Param param) throws Exception {
         log.info("华付银行卡3要素验证,param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.bankCardElement3(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.bankCardElement3(buildConditionBo(param), properties, param.getHeader());
     }
 
     /**
@@ -103,7 +103,7 @@ public final class HfepayClient {
     public HfepayBaseResult bankCardElement4(final HfepayBankCardElement2Param param) throws Exception {
         log.info("华付银行卡4要素验证,param={}", param);
         ValidateUtils.validate(param);
-        return HfepayCore.bankCardElement4(buildConditionBo(param), properties, param.getVector(), param.getHeader());
+        return HfepayCore.bankCardElement4(buildConditionBo(param), properties, param.getHeader());
     }
 
     /**

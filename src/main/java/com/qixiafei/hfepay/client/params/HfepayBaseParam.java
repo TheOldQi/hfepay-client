@@ -27,21 +27,6 @@ public class HfepayBaseParam {
     @NotNull
     private HfepayHeader header;
 
-    /**
-     * 加密算法偏移量，8位随机数或字母.
-     */
-    @NotNull
-    @Length(min = 8, max = 8)
-    private String vector;
-
-    public final String getVector() {
-        return vector;
-    }
-
-    public final void setVector(String vector) {
-        this.vector = vector;
-    }
-
     public final HfepayHeader getHeader() {
         return header;
     }

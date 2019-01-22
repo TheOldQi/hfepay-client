@@ -48,8 +48,11 @@ class ConditionBuilderFactory {
         // 姓名、身份证号验证
         POOL.put(HfepayIdNameAuthParam.class, new IdNameConditionBuilder());
         // 银行卡2要素验证
+        POOL.put(HfepayBankCardElement2Param.class,new BankCardElement2ConditionBuilder());
         // 银行卡3要素验证
+        POOL.put(HfepayBankCardElement3Param.class,new BankCardElement3ConditionBuilder());
         // 银行卡4要素验证
+        POOL.put(HfepayBankCardElement4Param.class,new BankCardElement4ConditionBuilder());
 
     }
 }

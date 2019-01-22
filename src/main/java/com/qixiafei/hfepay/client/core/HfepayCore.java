@@ -32,21 +32,20 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayIdPersonAuthResult idPersonAuth(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                                 final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                                 @Valid @NotNull HfepayHeader header) throws Exception {
 
         if (StringUtils.isBlank(hfepayProperties.getIdPersonAppKey())) {
             log.error("使用人证合一功能，必须配置hfepay.idPersonAppKey属性");
         }
         final HfepayIdPersonAuthResult result = new HfepayIdPersonAuthResult();
         result.setHeader(header);
-        final IdPersonRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getIdPersonAppKey(), hfepayProperties.getIdPersonUrl());
+        final IdPersonRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties,
+                hfepayProperties.getIdPersonAppKey(), hfepayProperties.getIdPersonUrl(), IdPersonRecord.class);
         if (record == null) {
             result.setResult(false);
             return result;
@@ -68,21 +67,20 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayIdOcrResult idOcr(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                   final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                   @Valid @NotNull HfepayHeader header) throws Exception {
         if (StringUtils.isBlank(hfepayProperties.getIdOcrAppKey())) {
             log.error("使用身份证ocr功能，必须配置hfepay.idOcrAppKey属性");
         }
         final HfepayIdOcrResult result = new HfepayIdOcrResult();
 
         result.setHeader(header);
-        final IdOcrRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getIdOcrAppKey(), hfepayProperties.getIdOcrUrl());
+        final IdOcrRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties,
+                hfepayProperties.getIdOcrAppKey(), hfepayProperties.getIdOcrUrl(), IdOcrRecord.class);
         if (record == null) {
             return result;
         }
@@ -103,28 +101,27 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayBankCardOcrResult bankCardOcr(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                               final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                               @Valid @NotNull HfepayHeader header) throws Exception {
         if (StringUtils.isBlank(hfepayProperties.getBankCardOcrAppKey())) {
             log.error("使用银行卡ocr功能，必须配置hfepay.bankCardOcrAppKey");
         }
         final HfepayBankCardOcrResult result = new HfepayBankCardOcrResult();
 
         result.setHeader(header);
-        final BankCardOcrRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getBankCardOcrAppKey(), hfepayProperties.getBankCardOrcUrl());
+        final BankCardOcrRecord record = setCodeAndGetRecord(result, conditionBo, hfepayProperties,
+                hfepayProperties.getBankCardOcrAppKey(), hfepayProperties.getBankCardOrcUrl(), BankCardOcrRecord.class);
         if (record == null) {
             return result;
         }
 
         if (HfepayIdPersonAuthRespCodeEnum.PASS.getCode().equals(record.getResCode())) {
             log.info("银行卡ocr成功");
-            result.setBankCardNo(record.getBankCardNo());
+            result.setBankCardNo(record.getBankCard());
         } else {
             log.error("银行卡ocr失败");
         }
@@ -137,21 +134,20 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayBaseResult idNameAuth(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                       final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                       @Valid @NotNull HfepayHeader header) throws Exception {
         if (StringUtils.isBlank(hfepayProperties.getIdNameAppKey())) {
             log.error("使用姓名、身份证号匹配验证，必须配置hfepay.idNameAppKey");
         }
         final HfepayBaseResult result = new HfepayBaseResult();
         result.setHeader(header);
 
-        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getIdNameAppKey(), hfepayProperties.getIdNameUrl());
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, hfepayProperties.getIdNameAppKey(),
+                hfepayProperties.getIdNameUrl(), Record.class);
         return result;
     }
 
@@ -161,21 +157,20 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayBaseResult bankCardElement2(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                             final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                             @Valid @NotNull HfepayHeader header) throws Exception {
         if (StringUtils.isBlank(hfepayProperties.getBankCardElementTwoAppKey())) {
             log.error("银行卡二要素验证，必须配置hfepay.bankCardElementTwoAppKey");
         }
         final HfepayBaseResult result = new HfepayBaseResult();
         result.setHeader(header);
 
-        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getBankCardElementTwoAppKey(), hfepayProperties.getBankCardElementTwo());
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, hfepayProperties.getBankCardElementTwoAppKey(),
+                hfepayProperties.getBankCardElementTwo(), Record.class);
         return result;
     }
 
@@ -184,21 +179,20 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayBaseResult bankCardElement3(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                             final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                             @Valid @NotNull HfepayHeader header) throws Exception {
         if (StringUtils.isBlank(hfepayProperties.getBankCardElementThreeAppKey())) {
             log.error("银行卡三要素验证，必须配置hfepay.bankCardElementThreeAppKey");
         }
         final HfepayBaseResult result = new HfepayBaseResult();
         result.setHeader(header);
 
-        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getBankCardElementThreeAppKey(), hfepayProperties.getBankCardElementThree());
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, hfepayProperties.getBankCardElementThreeAppKey(),
+                hfepayProperties.getBankCardElementThree(), Record.class);
         return result;
     }
 
@@ -207,21 +201,20 @@ class HfepayCore {
      *
      * @param conditionBo      请求条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密解密偏移量
      * @param header           请求的header信息
      * @return 外部响应结果实例
      * @throws Exception 各种异常
      */
     static HfepayBaseResult bankCardElement4(final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                                             final String vector, @Valid @NotNull HfepayHeader header) throws Exception {
+                                             @Valid @NotNull HfepayHeader header) throws Exception {
         if (StringUtils.isBlank(hfepayProperties.getBankCardElementFourAppKey())) {
             log.error("银行卡二要素验证，必须配置hfepay.bankCardElementFourAppKey");
         }
         final HfepayBaseResult result = new HfepayBaseResult();
         result.setHeader(header);
 
-        setCodeAndGetRecord(result, conditionBo, hfepayProperties, vector,
-                hfepayProperties.getBankCardElementFourAppKey(), hfepayProperties.getBankCardElementFour());
+        setCodeAndGetRecord(result, conditionBo, hfepayProperties, hfepayProperties.getBankCardElementFourAppKey(),
+                hfepayProperties.getBankCardElementFour(), Record.class);
         return result;
     }
 
@@ -252,7 +245,6 @@ class HfepayCore {
      * @param result           外部响应结果实例
      * @param conditionBo      查询条件bo
      * @param hfepayProperties 配置属性
-     * @param vector           加密偏移量
      * @param appKey           接口appKey
      * @param url              接口url
      * @param <R>              华付接口响应业务数据类型
@@ -262,8 +254,9 @@ class HfepayCore {
      */
     private static <R extends Record, P extends HfepayBaseResult> R
     setCodeAndGetRecord(final P result, final BaseConditionBo conditionBo, final HfepayProperties hfepayProperties,
-                        final String vector, final String appKey, final String url) throws Exception {
+                        final String appKey, final String url, Class<R> rClass) throws Exception {
         final BaseReqBo reqBo = new BaseReqBo();
+        final String vector = RandomString.rdmStr(8);
         final String conditionPlain = JSON.toJSONString(conditionBo);
         log.info("condition加密前={}", conditionPlain);
         final String conditionEncrypt = Chiper3Des.encrypt(conditionPlain, appKey, vector);
@@ -288,12 +281,12 @@ class HfepayCore {
 
             final String resultPlain = Chiper3Des.decrypt(respBo.getContents(), appKey, vector);
             log.info("contents部分解密后={}", resultPlain);
-            final BaseContentsBo<ContentsDataBo<R>> contentsBo = JSON.parseObject(resultPlain, new TypeReference<BaseContentsBo<ContentsDataBo<R>>>() {
+            final BaseContentsBo<R> contentsBo = JSON.parseObject(resultPlain, new TypeReference<BaseContentsBo<R>>(rClass) {
             }.getType());
 
 
             if (contentsBo.getData() != null) {
-                log.info("华付人脸比对接口调用成功");
+                log.info("华付{}接口调用成功", url);
                 final List<ContentsDataBo<R>> datas = contentsBo.getData();
                 ContentsDataBo<R> rContentsDataBo = datas.get(0);
                 final List<R> records = rContentsDataBo.getRecord();
@@ -319,4 +312,6 @@ class HfepayCore {
         }
 
     }
+
+
 }

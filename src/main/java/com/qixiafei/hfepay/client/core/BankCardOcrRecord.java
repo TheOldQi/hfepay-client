@@ -23,5 +23,5 @@ class BankCardOcrRecord extends Record {
     /**
      * 银行卡号.
      */
-    private String bankCardNo;
+    private String bankCard;
 }

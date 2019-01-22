@@ -27,4 +27,6 @@ class Record {
      * 返回码描述.
      */
     private String resDesc;
+
+    private String realName;
 }

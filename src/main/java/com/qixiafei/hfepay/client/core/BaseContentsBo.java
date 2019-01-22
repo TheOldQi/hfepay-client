@@ -16,7 +16,7 @@ import java.util.List;
  * @since java 1.8.0
  */
 @Data
-class BaseContentsBo<T> {
+class BaseContentsBo<T extends Record> {
 
     /**
      * 如果是错误结果，该字段有值.
@@ -26,6 +26,6 @@ class BaseContentsBo<T> {
     /**
      * 如果是正确结果，该字段有值.
      */
-    private List<T> data;
+    private List<ContentsDataBo<T>> data;
 
 }
